@@ -4,6 +4,8 @@ import { Navigate, Outlet } from 'react-router'
 
 export const PrivateRoute = () => {
 
+    //redux tarafında yer alan initialState içinde ki user bilgisi çekilir
+    //!state store erişip ilgili reducer altındaki bilgilere erişmemizi sağlar
     const user = useSelector((state)=>state.auth.user)
 
     //user içi true ise

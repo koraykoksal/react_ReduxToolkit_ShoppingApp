@@ -7,6 +7,7 @@ import { Home } from '../pages/Home'
 import { Login } from '../pages/Login'
 import { Register } from '../pages/Register'
 import { Basket } from '../pages/Basket'
+import { PrivateRoute } from './PrivateRoute'
 
 export const AppRouter = () => {
 
@@ -17,7 +18,11 @@ export const AppRouter = () => {
     
     <Navs/>
     <Routes>
+      <Route path="/" element={<PrivateRoute/>}>
       <Route path='/' element={<Home/>}/>
+      </Route>
+      
+
       <Route path='/login' element={<Login/>}/>
       <Route path='/register' element={<Register/>}/>
       <Route path='/basket' element={<Basket/>}/>

@@ -1,11 +1,17 @@
 import * as React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Rozet from './Rozet';
+import { useDispatch, useSelector } from 'react-redux';
+import { setDelUser } from '../feature/autSlice';
 
 
 function Navs() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(false);
+
+  const user = useSelector((state)=>state.auth.user)
+
+  const dispatch = useDispatch()
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -54,12 +60,16 @@ function Navs() {
                   </ul>
 
                   <ul className='flex justify-center items-end'>
-                    <li>
+                    {user?.email &&(<li>
+                      <Link className='text-md hover:bg-slate-200 hover:rounded-sm p-3' onClick={()=>dispatch(setDelUser())}>Logout</Link>
+                      </li>)}
+
+                    {!user?.email &&(<li>
                       <Link className='text-md hover:bg-slate-200 hover:rounded-sm p-3' to='/login'>Login</Link>
                       </li>
-                      <li>
-                      <Link className='text-md hover:bg-slate-200 hover:rounded-sm p-3' to="/register">Register</Link>
-                      </li>
+                      )}
+                    
+                      
                     <li>
                       <Link to="/basket"><Rozet/></Link>
                     </li>

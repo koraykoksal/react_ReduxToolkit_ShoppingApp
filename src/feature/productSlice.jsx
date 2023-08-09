@@ -15,12 +15,14 @@ reducers:{
 
     setBasket:(state,action)=>{
 
+        console.log("py : ",action.payload)
+
         if(state.products.some(p=>p.id == action.payload.id)){
 
             return{count:state.count+1,products:state.products.map((item)=>item.id == action.payload.id ? {...item,itemQuantity:item.itemQuantity + 1,itemPrice:item.itemPrice * item.itemQuantity}:item)}
         }
         else{
-            return{count:state.count + 1,products:[...state.products,{id:action.payload.id,itemName:action.payload.title,itemQuantity:1,itemPrice:action.payload.price}]} 
+            return{count:state.count + 1,products:[...state.products,{id:action.payload.item.id,itemName:action.payload.item.title,itemQuantity:1,itemPrice:action.payload.item.price}]} 
         }
         
     }

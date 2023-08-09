@@ -49,8 +49,8 @@ export const Items = ({secilendata}) => {
  
   const dispatch=useDispatch()
   
-  const handleClick=()=>{
-    dispatch(setBasket())
+  const handleClick=(item)=>{
+    dispatch(setBasket({item}))
   }
 
   return (
@@ -86,7 +86,7 @@ export const Items = ({secilendata}) => {
 
           <AiOutlineRead className='hover:text-white' size={'30px'} onClick={()=>navigate(`details/${item?.id}`,{state:item})}/>
           {/* <BiCartAdd className='hover:text-white' size={'30px'} onClick={()=>dispatch(new_item(item))}/> */}
-          <BiCartAdd className='hover:text-white' size={'30px'} onClick={handleClick}/>
+          <BiCartAdd className='hover:text-white' size={'30px'} onClick={()=>dispatch(setBasket({item}))}/>
           
           </div>
 

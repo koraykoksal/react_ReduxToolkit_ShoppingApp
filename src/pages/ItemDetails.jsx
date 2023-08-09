@@ -2,6 +2,8 @@ import React from 'react'
 import { useLocation,useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import {BsCartPlus} from 'react-icons/bs'
+import { useDispatch } from 'react-redux'
+import { setBasket } from '../feature/productSlice'
 
 
 export const ItemDetails = () => {
@@ -9,7 +11,7 @@ export const ItemDetails = () => {
   const {state} = useLocation()
   const {id} = useParams()
 
-  
+  const dispatch = useDispatch()
 
   return (
    
@@ -29,7 +31,8 @@ export const ItemDetails = () => {
             
             <div className='flex justify-between items-center'>
             <p className="text-gray-700 text-base mb-3">Category : {state?.category}</p>
-            <BsCartPlus size={'25px'} className='hover:cursor-pointer hover:text-blue-500'/>
+
+            <BsCartPlus size={'25px'} className='hover:cursor-pointer hover:text-blue-500' onClick={()=>dispatch(setBasket())}/>
             </div>
             
 

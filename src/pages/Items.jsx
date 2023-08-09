@@ -4,7 +4,8 @@ import axios from 'axios';
 import {MdAttachMoney} from 'react-icons/md'
 import {BiCartAdd} from 'react-icons/bi'
 import {AiOutlineRead} from 'react-icons/ai'
-
+import { useDispatch, useSelector } from 'react-redux';
+import { setBasket } from '../feature/productSlice';
 
 
 export const Items = ({secilendata}) => {
@@ -12,7 +13,6 @@ export const Items = ({secilendata}) => {
   let navigate=useNavigate()
 
   const [products, setProducts] = useState([])
-
 
 
   const API_SELECT_PRODUCTS=`https://dummyjson.com/products/category/${secilendata}`
@@ -47,8 +47,11 @@ export const Items = ({secilendata}) => {
   }
 
  
-
+  const dispatch=useDispatch()
   
+  const handleClick=()=>{
+    dispatch(setBasket())
+  }
 
   return (
     
@@ -83,7 +86,7 @@ export const Items = ({secilendata}) => {
 
           <AiOutlineRead className='hover:text-white' size={'30px'} onClick={()=>navigate(`details/${item?.id}`,{state:item})}/>
           {/* <BiCartAdd className='hover:text-white' size={'30px'} onClick={()=>dispatch(new_item(item))}/> */}
-          <BiCartAdd className='hover:text-white' size={'30px'} />
+          <BiCartAdd className='hover:text-white' size={'30px'} onClick={handleClick}/>
           
           </div>
 
